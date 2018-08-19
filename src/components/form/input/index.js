@@ -20,7 +20,7 @@ const Input = (props) => {
           value={value}
           onChange={onChange}
           style={{
-            borderColor: `${isError > 0 ? 'red' : ''}`,
+            borderColor: `${isError > 0 ? '#f00' : ''}`,
           }}
         />
       </label>
