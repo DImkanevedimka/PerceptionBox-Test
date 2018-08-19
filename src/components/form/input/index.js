@@ -1,7 +1,14 @@
-import React from "react";
+import React from 'react';
 
-const Input = props => {
-  const { name, type, value, onChange, error } = props;
+const Input = (props) => {
+  const {
+    name,
+    type,
+    value,
+    onChange,
+    error,
+  } = props;
+
   const isError = error.length > 0;
   return (
     <div>
@@ -13,7 +20,7 @@ const Input = props => {
           value={value}
           onChange={onChange}
           style={{
-            borderColor: `${isError > 0 ? "red" : ""}`
+            borderColor: `${isError > 0 ? 'red' : ''}`,
           }}
         />
       </label>

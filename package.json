@@ -10,6 +10,8 @@
     "react-scripts": "1.1.4"
   },
   "scripts": {
+    "lint:js": "./node_modules/.bin/eslint --ext .js ./src/",
+    "lint:scss": "scss-lint",
     "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
     "start-js": "react-scripts start",
@@ -18,5 +20,17 @@
     "build": "npm-run-all build-css build-js",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "devDependencies": {
+    "eslint": "^5.4.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.11.1",
+    "pre-commit": "^1.2.2"
+  },
+  "pre-commit": [
+    "lint:js",
+    "lint:scss"
+  ]
 }

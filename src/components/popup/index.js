@@ -1,13 +1,16 @@
-import React from "react";
+import React from 'react';
 
-const Popup = (props) => (
-  <div style = {{display: `${props.isOpen ? 'flex' : ''}`}} onClick={(e) => (props.closePopup(e))} >
-    <div>
-      <span>X</span>
-      <p>Добро пожаловать!</p>
-      <p>{props.name}</p>
+const Popup = (props) => {
+  const { isOpen, closePopup, name } = props;
+  return (
+    <div style={{ display: `${isOpen ? 'flex' : ''}` }} onClick={e => closePopup(e)}>
+      <div>
+        <span>&#10006;</span>
+        <p>Добро пожаловать!</p>
+        <p>{name}</p>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export { Popup };

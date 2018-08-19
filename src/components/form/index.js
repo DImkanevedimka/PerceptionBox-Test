@@ -1,42 +1,41 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import { Input } from './input';
 
 class Form extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      Username: "",
-      Password: "",
-      formErrors: { Username: "", Password: "" },
+      Username: '',
+      Password: '',
+      formErrors: { Username: '', Password: '' },
       UsernameValid: false,
       PasswordValid: false,
       formValid: false,
     };
   }
 
-  handleUserInput = e => {
-    const name = e.target.name;
-    const value = e.target.value;
+  handleUserInput = (e) => {
+    const { name, value } = e.target;
     this.setState({ [name]: value }, () => {
       this.validateField(name, value);
     });
   };
 
   validateField(fieldName, value) {
-    let fieldValidationErrors = this.state.formErrors;
-    let UsernameValid = this.state.UsernameValid;
-    let PasswordValid = this.state.PasswordValid;
+    let { UsernameValid, PasswordValid } = this.state;
+    const { formErrors } = this.state;
+    const fieldValidationErrors = formErrors;
 
     switch (fieldName) {
-      case "Username":
+      case 'Username':
         UsernameValid = !value.toLowerCase().match(/[а-я\n@().^+@!]/) && value.length > 0;
-        fieldValidationErrors.Username = UsernameValid ? "" : "Только латиница и цифры";
+        fieldValidationErrors.Username = UsernameValid ? '' : 'Только латиница и цифры';
         break;
-      case "Password":
+      case 'Password':
         PasswordValid = value.length >= 6;
         fieldValidationErrors.Password = PasswordValid
-          ? ""
-          : "Не меньше 6 символов";
+          ? ''
+          : 'Не меньше 6 символов';
         break;
       default:
         break;
@@ -45,30 +44,37 @@ class Form extends Component {
     this.setState(
       {
         formErrors: fieldValidationErrors,
-        UsernameValid: UsernameValid,
-        PasswordValid: PasswordValid
+        UsernameValid,
+        PasswordValid,
       },
-      this.validateForm
+      this.validateForm,
     );
   }
 
   validateForm() {
-    let validForm = this.state.UsernameValid && this.state.PasswordValid;
-    console.log(validForm);
+    const { UsernameValid, PasswordValid } = this.state;
+    const validForm = UsernameValid && PasswordValid;
     this.setState({
-      formValid: validForm
+      formValid: validForm,
     });
-  };
+  }
 
   render() {
+    const { submit } = this.props;
+    const {
+      Username,
+      Password,
+      formErrors,
+      formValid,
+    } = this.state;
     return (
-      <form action="#" onSubmit = {(e) => this.props.submit(e, this.state.Username)}>
+      <form action="#" onSubmit={e => submit(e, Username)}>
         <div>
-          <Input name={'Username'} type={'text'} value={this.state.Username} onChange={this.handleUserInput} error={this.state.formErrors.Username}/>
-          <Input name={'Password'} type={'Password'} value={this.state.Password} onChange={this.handleUserInput} error={this.state.formErrors.Password} />
+          <Input name="Username" type="text" value={Username} onChange={this.handleUserInput} error={formErrors.Username} />
+          <Input name="Password" type="password" value={Password} onChange={this.handleUserInput} error={formErrors.Password} />
         </div>
         <div>
-          <button type="submit" disabled={!this.state.formValid}>
+          <button type="submit" disabled={!formValid}>
             Отправить
           </button>
           <a href="#pass">Forgot Password?</a>
