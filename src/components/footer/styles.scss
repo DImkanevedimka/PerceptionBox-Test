@@ -1,0 +1,10 @@
+@import 'styles/variables';
+
+footer {
+	color: $gray2;
+	text-align: center;
+
+	a {
+		color: inherit;
+	}
+}

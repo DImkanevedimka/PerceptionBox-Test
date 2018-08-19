@@ -1,0 +1,38 @@
+@import 'styles/variables';
+
+form {
+  div {
+		width: 100%;
+		position: relative;
+
+		span {
+			position: absolute;
+			right: 0;
+			top: 0;
+			font-size: 12px;
+			color: $red;
+		}
+	}
+}
+
+label {
+	color: $dark-gray;
+	font-size: 14px;
+	line-height: 20px;
+	width: 100%;
+}
+
+input {
+	display: block;
+	width: 100%;
+	box-sizing: border-box;
+	margin-bottom: 10px;
+	height: 36px;
+	padding-left: 10px;
+	padding-right: 10px;
+	outline: none;
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 4px;
+	border-color: $gray;
+}
